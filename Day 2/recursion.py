@@ -62,6 +62,14 @@ class recursion:
             return self.kth_symbol(n-1,k)
         else:
             return int(not(self.kth_symbol(n-1, k-half)))
+    def Josephus(self,n,k):
+        def recurse(nums,c,k):
+            if len(nums) == 1:
+                return nums[0]
+            c = (c+k-1) % len(nums)
+            nums.pop(c)
+            return recurse(nums,c,k)
+        return recurse([i for i in range(1,n+1)],0, k)
 
 
 obj = recursion()
