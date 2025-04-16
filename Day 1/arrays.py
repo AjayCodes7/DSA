@@ -11,6 +11,12 @@ def monotonicArray(array):
             count += 1
     return count == 0 or count == len(array)-1
 
+def josephus(n,k):
+    winner = 0
+    for i in range(2, n+1):
+        winner = (winner + k) % i
+    return winner + 1
+
 
 print(sortedSquaredArray([1,2,3,4,5,6,7,8,9]))
 
