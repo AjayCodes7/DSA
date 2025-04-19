@@ -17,9 +17,6 @@ def josephus(n,k):
         winner = (winner + k) % i
     return winner + 1
 
-
 print(sortedSquaredArray([1,2,3,4,5,6,7,8,9]))
-
-
 print(monotonicArray([1,2,3,4,5,6,7,8,9]))
 print(monotonicArray([9,8,7,10,5,4,3,2,1]))
