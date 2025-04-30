@@ -79,4 +79,47 @@ def knapSack(N, W, val, wt):
             else:
                 dp[item][weight] = dp[item-1][weight]
     return dp[-1][-1]
-print(knapSack(2, 3, [4, 2], [3, 1]))
+# print(knapSack(2, 3, [4, 2], [3, 1]))
+
+
+def countSubstrings(s):
+    # brute-force
+    result = 0
+    def recurse(n,sub):
+        nonlocal result
+        if sub and sub == sub[::-1]:
+            result += 1
+        if n == len(s):
+            return 0
+        recurse(n+1, sub+s[n])
+        return result 
+    for i in range(len(s)):
+        recurse(i,"")
+    return result
+
+def countSubstrings(s):
+    n = len(s)
+    dp = [[-1]*n for _ in range(n)]
+    def recurse(i,j):
+        if i == j: 
+            dp[i][j] = True
+            return dp[i][j] 
+        if dp[i][j] != -1:
+            return dp[i][j]
+        recurse(i, j-1)
+        recurse(i+1, j)
+        if s[i] == s[j] and (i+1 == j or recurse(i+1,j-1)):
+            dp[i][j] = True
+        else:
+            dp[i][j] = False
+    recurse(0,n-1)
+    result = 0
+    for d in range(n):
+        print(dp[d])
+        for i in range(0,n-d):
+            j = d + i
+            if dp[i][j]:
+                result += 1
+    return result
+
+print(countSubstrings("gayii"))
